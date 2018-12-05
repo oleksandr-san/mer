@@ -44,10 +44,15 @@ struct point_generator
     }
 };
 
+int area(const rect& rect)
+{
+	return (std::abs(rect.ll.x - rect.ur.x) + 1) * (std::abs(rect.ll.y - rect.ur.y) + 1);
+}
+
 plane readPlane(std::istream& stream)
 {
     int numColumns, numRows;
-    std::cin >> numColumns >> numRows;
+    stream >> numColumns >> numRows;
 
     plane plane{ numColumns, numRows };
     for (int row = 0; row < numRows; ++row)
@@ -55,7 +60,7 @@ plane readPlane(std::istream& stream)
         for (int col = 0; col < numColumns; ++col)
         {
             char b;
-            std::cin >> b;
+            stream >> b;
 
             if (b == '0')
                 plane.add_point({ col, row });
@@ -65,7 +70,7 @@ plane readPlane(std::istream& stream)
     return plane;
 }
 
-auto writePlane(std::ostream& stream, const plane& plane)
+void writePlane(std::ostream& stream, const plane& plane)
 {
     const auto numRows = plane.height();
     const auto numColumns = plane.width();
@@ -97,8 +102,8 @@ rect findMaximumEmptyRectangle(const plane& plane)
     rect bestRect;
     int bestArea = 0;
 
-    const int numRows = plane.height();
-    const int numColumns = plane.width();
+    const auto numRows = plane.height();
+    const auto numColumns = plane.width();
 
     std::vector<int> cachedWidths(numColumns + 1);
     std::vector<point> stack;
