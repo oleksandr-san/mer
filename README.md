@@ -7,5 +7,5 @@ Simple solution of maximum empty rectangle problem
 mkdir build && cd build
 conan install ..
 cmake .. -G "Visual Studio 15 Win64"
-cmake --build . --config Releas
+cmake --build . --config Release
 ```
