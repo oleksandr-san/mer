@@ -18,8 +18,8 @@ struct rect
 struct plane
 {
     plane(int width, int height) : points(height, std::vector<bool>(width, false)) {}
-    int height() const { return points.size(); }
-    int width() const { return points.empty() ? 0 : points[0].size(); }
+    int height() const { return static_cast<int>(points.size()); }
+    int width() const { return points.empty() ? 0 : static_cast<int>(points[0].size()); }
     bool has_point(const point& p) const { return points[p.y][p.x]; }
     void add_point(const point& p) { points[p.y][p.x] = true; }
 
