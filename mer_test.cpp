@@ -2,6 +2,7 @@
 
 #include <sstream>
 #include <cassert>
+#include <gtest/gtest.h>
 
 plane fromString(const std::string& s)
  {
@@ -9,7 +10,7 @@ plane fromString(const std::string& s)
     return readPlane(stream);
 }
 
-void Test_SimpleCase()
+TEST(MaximumEmptyRectangle, SimpleTest)
 {
     const std::string planeData =
 R"(10 10
@@ -29,7 +30,8 @@ R"(10 10
     assert(area(rect) == 10);
 }
 
-int main()
+int main(int argc, char** argv)
 {
-    Test_SimpleCase();
+    ::testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
 }

@@ -2,8 +2,10 @@
 Simple solution of maximum empty rectangle problem
 
 ## Build notes
+### Windows 64
 ```
 mkdir build && cd build
-cmake ..
-cmake --build . --config Release
+conan install ..
+cmake .. -G "Visual Studio 15 Win64"
+cmake --build . --config Releas
 ```
